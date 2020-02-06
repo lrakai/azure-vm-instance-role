@@ -7,17 +7,17 @@ Example ARM template showing how to assign a role to an Azure VM. This simulates
 - PowerShell
 
     ```ps1
-    $resourceGroupName = "qa-lab"
+    $resourceGroupName = "vmrole"
     New-AzureRmResourceGroup -Name $resourceGroupName -Location "eastus"
-    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name vmrole -TemplateFile .\azure-deploy.json
+    New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name vmrole -TemplateFile .\infra\arm-template.json
     ```
 
 - Bash
 
     ```sh
-    resourceGroupName="qa-lab"
+    resourceGroupName="vmrole"
     az group create --name $resourceGroupName --location "eastus"
-    az group deployment create --resource-group $resourceGroupName --name vmrole --template-file ./azure-deploy.json
+    az group deployment create --resource-group $resourceGroupName --name vmrole --template-file ./infra/arm-template.json
     ```
 
 ## Destroy
