@@ -2,10 +2,6 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "builtInRoleType": {
-            "type": "string",
-            "defaultValue": "Reader"
-        },
         "rbacGuid": {
             "type": "string",
             "defaultValue": "[newGuid()]"
@@ -251,8 +247,8 @@
             "type": "Microsoft.Authorization/roleAssignments",
             "name": "[parameters('rbacGuid')]",
             "properties": {
-                "roleDefinitionId": "[variables(parameters('builtInRoleType'))]",
-                "principalId": "[reference(resourceId('Microsoft.Compute/virtualMachines',parameters('virtualMachineName')), '2019-07-01', 'Full').identity.principalId]",
+                "roleDefinitionId": "[variables('role')]",
+                "principalId": "[reference(concat(resourceId('Microsoft.Compute/virtualMachines',parameters('virtualMachineName')),'/providers/Microsoft.ManagedIdentity/Identities/default'), '2018-11-30').principalId]",
                 "scope": "[resourceGroup().id]"
             },
              "dependsOn": [
@@ -267,7 +263,7 @@
         },
         "roleGuid": {
             "type": "string",
-            "value": "[parameters('guidValue')]"
+            "value": "[parameters('rbacGuid')]"
         }
     }
 }
