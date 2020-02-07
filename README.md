@@ -20,6 +20,12 @@ Example ARM template showing how to assign a role to an Azure VM. This simulates
     az group deployment create --resource-group $resourceGroupName --name vmrole --template-file ./infra/arm-template.json
     ```
 
+## Authenticate in Azure PowerShell using Managed Identity
+
+    ```ps1
+    Connect-AzAccount -Identity
+    ```
+
 ## Destroy
 
 - PowerShell
@@ -37,4 +43,4 @@ Example ARM template showing how to assign a role to an Azure VM. This simulates
 
 ## References
 
-- Also a quickstart template [here](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-msi).
+- Also a quickstart template using nested templates to perform running some scripts with managed identities [here](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-msi).
